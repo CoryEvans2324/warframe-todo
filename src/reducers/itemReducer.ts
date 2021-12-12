@@ -5,11 +5,13 @@ import type { RootState } from '../store'
 interface ItemState { 
   item: Item | null;
   components: Item[];
+  ingoreList: string[];
 }
 
 const initialState: ItemState = {
   item: null,
   components: [],
+  ingoreList: ['Gallium']
 }
 
 export const itemSlice = createSlice({

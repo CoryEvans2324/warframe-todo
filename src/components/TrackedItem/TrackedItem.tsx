@@ -11,7 +11,9 @@ export function TrackedItem({ clearTrackedItem }: TrackedItemProps) {
   const item = useAppSelector((state) => state.currentItem.item);
   const components = useAppSelector((state) => state.currentItem.components);
 
-  const resources = countComponents(components);
+  const ignoreComponentsOf = useAppSelector((state) => state.currentItem.ingoreList);
+
+  const resources = countComponents(components, ignoreComponentsOf);
 
   return (
     <div>
@@ -50,7 +52,7 @@ export function TrackedItem({ clearTrackedItem }: TrackedItemProps) {
   );
 }
 
-const countComponents = (items: Item[], multiplier = 1) => {
+const countComponents = (items: Item[], ignoreList: string[] = [], multiplier = 1) => {
   var counts = {};
   items.forEach((item) => {
     const itemCount = item.itemCount || 1;
@@ -58,8 +60,8 @@ const countComponents = (items: Item[], multiplier = 1) => {
 
     counts[item.name] = ((counts[item.name] || 0) + (itemCount * multiplier));
 
-    if (item.components) {
-      counts = combineCounts(counts, countComponents(item.components as Item[], totalBlueprintsNeeded));
+    if (item.components && !ignoreList.includes(item.name)) {
+      counts = combineCounts(counts, countComponents(item.components as Item[], ignoreList, totalBlueprintsNeeded));
     }
   });
   return counts;

@@ -4,6 +4,7 @@ import type { Item } from 'warframe-items';
 import { ItemImage } from '../ItemImage';
 
 import { IconChevronDown } from '@tabler/icons';
+import { useAppSelector } from '../../hooks';
 
 type BlueprintComponentProps = {
   item: Item;
@@ -20,10 +21,12 @@ export const BlueprintComponent: React.FC<BlueprintComponentProps> = ({
   item,
   level = 0,
 }) => {
-  const ignoreComponentsOf = ['Gallium']
+  const ignoreComponentsOf = useAppSelector((state) => state.currentItem.ingoreList);
+
   const ignoreComponents = ignoreComponentsOf.includes(item.name)
   const [shown, setShown] = useState(false);
   const hasComponents = item.components && item.components.length > 0;
+
   return (
     <li
       key={item.name}
