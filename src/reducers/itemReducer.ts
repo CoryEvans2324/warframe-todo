@@ -11,7 +11,7 @@ interface ItemState {
 const initialState: ItemState = {
   item: null,
   components: [],
-  ingoreList: ['Gallium']
+  ingoreList: ['Gallium', 'Neurodes', 'Neural Sensors', 'Orokin Cell', 'Morphics', 'Control Module']
 }
 
 export const itemSlice = createSlice({
