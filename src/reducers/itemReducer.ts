@@ -11,7 +11,8 @@ interface ItemState {
 const initialState: ItemState = {
   item: null,
   components: [],
-  ingoreList: ['Gallium', 'Neurodes', 'Neural Sensors', 'Orokin Cell', 'Morphics', 'Control Module']
+  // TODO: make this configurable for the user, and persist the store
+  ingoreList: ['Gallium', 'Neurodes', 'Neural Sensors', 'Orokin Cell', 'Morphics', 'Control Module', 'Isos']
 }
 
 export const itemSlice = createSlice({

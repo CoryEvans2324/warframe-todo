@@ -56,7 +56,7 @@ const countComponents = (items: Item[], ignoreList: string[] = [], multiplier = 
   var counts = {};
   items.forEach((item) => {
     const itemCount = item.itemCount || 1;
-    const totalBlueprintsNeeded = itemCount / (item.buildQuantity || 1);
+    const totalBlueprintsNeeded = Math.ceil(itemCount / (item.buildQuantity || 1));
 
     counts[item.name] = ((counts[item.name] || 0) + (itemCount * multiplier));
 
