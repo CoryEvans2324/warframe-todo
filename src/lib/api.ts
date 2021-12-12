@@ -54,6 +54,7 @@ export const generateItemComponents = (item: Item) => {
     
     return {
       ...componentItem,
+      itemCount: component.itemCount,
       components: generateItemComponents(componentItem),
       patchlogs: null,
     }
